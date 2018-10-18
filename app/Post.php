@@ -6,21 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 use App\Tag;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 
 class Post extends Model
 {
     use Sluggable;
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'date'];
 
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function author()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function tags()
@@ -61,33 +62,40 @@ class Post extends Model
 
     public function remove()
     {
-        Storage::delete('uploads/'. $this->image);
+        $this->removeImage();
         $this->delete();
+    }
+
+    public function removeImage()
+    {
+        if ($this->image != null) {
+            Storage::delete('uploads/' . $this->image);
+        }
     }
 
     public function uploadImage($image)
     {
-        if($image == null) {
+        if ($image == null) {
             return;
         }
-        Storage::delete('uploads/'. $this->image);
+        $this->removeImage();
         $filename = str_random(10) . '.' . $image->extension();
-        $image->saveAs('uploads', $filename);
+        $image->storeAs('uploads', $filename);
         $this->image = $filename;
         $this->save();
     }
 
     public function getImage()
     {
-        if($this->image == null){
+        if ($this->image == null) {
             return '/img/no-image.png';
         }
-        return '/uploads' . $this->image;
+        return '/uploads' . '/' . $this->image;
     }
 
     public function setCategory($id)
     {
-        if($id == null){
+        if ($id == null) {
             return;
         }
 
@@ -97,7 +105,7 @@ class Post extends Model
 
     public function setTags($ids)
     {
-        if($ids == null){
+        if ($ids == null) {
             return;
         }
         $this->tags()->sync($ids);
@@ -117,8 +125,7 @@ class Post extends Model
 
     public function toggleStatus($value)
     {
-        if($value == null)
-        {
+        if ($value == null) {
             return $this->setDraft();
         }
 
@@ -139,12 +146,39 @@ class Post extends Model
 
     public function toggleFeature($value)
     {
-        if($value == null)
-        {
+        if ($value == null) {
             return $this->setStandart();
         }
 
         return $this->setFeatured();
+    }
+
+    public function setDateAttribute($value)
+    {
+        $date = Carbon::createFromFormat('d/m/y', $value)->format('Y-m-d');
+        $this->attributes['date'] = $date;
+    }
+
+    public function getDateAttribute($value)
+    {
+        $date = Carbon::createFromFormat('Y-m-d', $value)->format('d/m/y');
+        return $date;
+    }
+
+    public function getCategoryTitle()
+    {
+        if ($this->category != null){
+            return $this->category->title;
+        }
+        return 'Нет категории';
+    }
+
+    public function getTagsTitles()
+    {
+        if(!$this->tags->isEmpty()){
+            return implode(', ', $this->tags->pluck('title')->all());
+        }
+        return 'Нет тегов';
     }
 
 
