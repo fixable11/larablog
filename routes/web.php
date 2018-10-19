@@ -25,6 +25,8 @@ Route::group(['middleware' => 'guest'], function(){
 
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/logout', 'AuthController@logout')->name('logout');
+    Route::get('/profile', 'ProfileController@index')->name('profile');
+    Route::post('/profile', 'ProfileController@store');
 });
 
 Route::group([

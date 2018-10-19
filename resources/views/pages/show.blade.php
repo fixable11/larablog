@@ -38,7 +38,7 @@
                 <div class="top-comment">
                     <!--top comment-->
                     <img src="/images/comment.jpg" class="pull-left img-circle" alt="">
-                    <h4>Rubel Miah</h4>
+                    <h4>{{$post->author->name}}</h4>
 
                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy hello ro mod tempor
                         invidunt ut labore et dolore magna aliquyam erat.</p>
@@ -121,7 +121,7 @@
                 </div>
                 <!-- end bottom comment-->
 
-
+                @if (Auth::check())
                 <div class="leave-comment">
                     <!--leave comment-->
                     <h4>Leave a reply</h4>
@@ -151,6 +151,7 @@
                     </form>
                 </div>
                 <!--end leave comment-->
+                @endif
             </div>
             <div class="col-md-4" data-sticky_column>
                 <div class="primary-sidebar">
