@@ -48,7 +48,8 @@
                     </div>
                     <div class="form-group">
                         <label>Теги</label>
-                        <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Выберите теги" style="width: 100%;">
+                        <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Выберите теги"
+                            style="width: 100%;">
                             @foreach ($tags as $tag_id => $tag)
                             <option value="{{$tag_id}}">{{$tag}}</option>
                             @endforeach
@@ -70,7 +71,8 @@
                     <!-- checkbox -->
                     <div class="form-group">
                         <label>
-                            <input name="is_featured"  type="checkbox" class="minimal" @if ($post->is_featured) {{'checked'}} @endif>
+                            <input name="is_featured" type="checkbox" class="minimal" @if ($post->is_featured)
+                            {{'checked'}} @endif>
                         </label>
                         <label>
                             Рекомендовать
@@ -79,7 +81,8 @@
                     <!-- checkbox -->
                     <div class="form-group">
                         <label>
-                            <input name="status" type="checkbox" class="minimal" @if ($post->status) {{'checked'}} @endif>
+                            <input name="status" type="checkbox" class="minimal" @if ($post->status) {{'checked'}}
+                            @endif>
                         </label>
                         <label>
                             Черновик
@@ -89,7 +92,13 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Полный текст</label>
-                    <textarea name="content" id="" cols="30" rows="10" class="form-control">{{$post->content}}</textarea>
+                        <textarea name="content" id="" cols="30" rows="10" class="form-control">{{$post->content}}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Описание</label>
+                        <textarea name="description" id="" cols="30" rows="10" class="form-control">{{$post->description}}</textarea>
                     </div>
                 </div>
             </div>

@@ -46,7 +46,8 @@
                     </div>
                     <div class="form-group">
                         <label>Теги</label>
-                        <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Выберите теги" style="width: 100%;">
+                        <select name="tags[]" class="form-control select2" multiple="multiple" data-placeholder="Выберите теги"
+                            style="width: 100%;">
                             @foreach ($tags as $tag_id => $tag)
                             <option value="{{$tag_id}}">{{$tag}}</option>
                             @endforeach
@@ -88,7 +89,13 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Полный текст</label>
-                        <textarea name="content" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea name="content" id="" cols="30" rows="10" class="form-control">{{old('content')}}</textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Описание</label>
+                        <textarea name="description" id="" cols="30" rows="10" class="form-control">{{old('description')}}</textarea>
                     </div>
                 </div>
             </div>
