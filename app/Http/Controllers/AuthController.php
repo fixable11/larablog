@@ -18,7 +18,8 @@ class AuthController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
         ]);
 
         $user = User::add($request->all());
@@ -48,7 +49,7 @@ class AuthController extends Controller
             return redirect()->route('home');
         }
 
-        return redirect()->back()->with('status', 'Неправильный логин или пароль');   
+        return redirect()->back()->with('status', 'Неправильный логин или пароль')->withInput();   
     }
 
     public function logout()

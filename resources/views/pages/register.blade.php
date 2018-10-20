@@ -34,6 +34,12 @@
                                 <input type="password" class="form-control" id="password" name="password" placeholder="password">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="input_name">Repeat Password</div>
+                                <input type="password" class="form-control" id="password2" name="password_confirmation" placeholder="password">
+                            </div>
+                        </div>
                         <button type="submit" class="btn send-btn">Register</button>
 
                     </form>
