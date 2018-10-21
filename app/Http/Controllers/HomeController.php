@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(2);
+        $posts = Post::where('status',1)->paginate(2);
         return view('pages.index', [
             'posts' => $posts,
         ]);
