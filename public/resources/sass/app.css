@@ -1,0 +1,24 @@
+.bottom-comment .ss {
+  background-color: green;
+}
+
+.bottom-comment p.para {
+  font-size: 16px;
+}
+
+.bottom-comment .comment-img {
+  padding-bottom: 30px;
+}
+
+.img-circle {
+  max-width: 75px;
+  max-height: 75px;
+  width: auto;
+  height: 100%;
+}
+
+.comment-text {
+  margin-left: 40px;
+  position: relative;
+}
+

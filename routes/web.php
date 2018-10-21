@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/logout', 'AuthController@logout')->name('logout');
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::post('/profile', 'ProfileController@store');
+    Route::post('/comment', 'CommentsController@store');
 });
 
 Route::group([
@@ -40,6 +41,9 @@ Route::group([
     Route::resource('/tags', 'TagsController');
     Route::resource('/users', 'UsersController');
     Route::resource('/posts', 'PostsController');
+    Route::get('/comments', 'CommentsController@index')->name('comments.index');
+    Route::get('/comments/toggle/{id}', 'CommentsController@toggle');
+    Route::delete('/comments/{id}/destroy', 'CommentsController@destroy')->name('comments.destroy');
 
 });
 

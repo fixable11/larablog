@@ -1,14 +1,25 @@
+.bottom-comment {
+    .ss {
+        background-color: green;
+    }
+}
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+.bottom-comment p.para {
+    font-size: 16px;
+}
 
-// Variables
-@import 'variables';
+.bottom-comment .comment-img {
+    padding-bottom: 30px;
+}
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+.img-circle {
+    max-width: 75px;
+    max-height: 75px;
+    width: auto;
+    height: 100%;
+}
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.comment-text {
+    margin-left: 40px;
+    position: relative;
 }
